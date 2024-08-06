@@ -133,7 +133,7 @@ We're going to initiate a perpetual/non-stop ping from our Windows 10 VM to the 
 ![image](https://github.com/marcusjonesIT/azure-network-protocols/assets/174873189/ae4d5b1d-6a9c-4421-bb85-21a1bb7f8e63)
 ![image](https://github.com/marcusjonesIT/azure-network-protocols/assets/174873189/947c79dd-c86f-4292-9123-ea118670578b)
 <p>
-Open the Network Security Group settings for VM2 and select Inbound Security Rules, Click add and we're going to create the new rule to block incoming ICMP traffic. Then we're going to use the settings in the picture above for the rule. Change the Protocol from "Any" to "ICMPv4", change action to "Deny" and then for Priority we're going to change it to 200 to allow this rule to be evaluated before any other rule so it can block the ICMP traffic. 
+Open the Network Security Group settings for VM2 and select Inbound Security Rules. Click "Add" to create a rule to block incoming ICMP traffic. Use the settings in the picture above: set Protocol to "ICMPv4", Action to "Deny", and Priority to 200 to ensure it blocks ICMP traffic before other rules.
 </p>
 <br />
 
@@ -171,7 +171,7 @@ Immediately when we try to initiate the SSH connection you will observe some SSH
 
 ![image](https://github.com/user-attachments/assets/37eaead4-370a-43dc-8ff5-6000eb2a21b2)
 <p>
-It will ask you if you are sure you want to connecting, type yes and press enter. When entering the password it's not going to actually show the password on the screen so just know when you're typing the password it is going into the terminal. Note: If you think you messed up just hit enter once and fail it then enter the password again or just hit backspace a bunch of times.
+It will ask if you want to connect; type "yes" and press Enter. When entering the password, it won't show on the screen. If you think you made a mistake, hit Enter to fail and re-enter the password, or press backspace to correct it.
 </p>
 <br />
 
@@ -185,17 +185,17 @@ Now that we're logged in you can type commands (id, uname -a, pwd, etc.) in the 
 ![image](https://github.com/user-attachments/assets/a329ab42-6b3a-4bd1-8f48-fd73678f5ba7)
 
 <p>
-Next we're going to observe DNS traffic so type "DNS" into the filter the press enter. We will use the "nslookup" command which will pretty much ask the DNS server what the IP Address is for any given Host name. For example (nslookup www.google.com or nslookup www.espn.com) this essentially asks our DNS server what the IP Addresses for Google and ESPN. Note: Instead of typing DNS in the filter you can also use (UDP.port==53) to observe the DNS traffic because DNS uses Port 53.
+Next, we'll observe DNS traffic by typing "DNS" or "UDP.port==53" into the filter. Use the "nslookup" command (e.g., nslookup www.google.com or nslookup www.espn.com) to query the DNS server for the IP addresses of these hostnames.
 </p>
 <br />
 
 ![image](https://github.com/user-attachments/assets/afa337d8-8d8d-4d82-86de-d2a33ba0cc45)
 <p>
-Lastly, we will observe RDP traffic. So in the filter we can type RDP or tcp.port==3389. Immediately you should see it spamming non-stop and thats because there's like an actual live RDP session session from our Host Computer like our physical computer to the Virtual Machine. So essentially whatever we're doing on our actual computer it just sends traffic to this VM so that's why we see this non-stop traffic coming through because it's like a stream of traffic as we're using the VM if that makes sense. 
+Lastly, we will observe RDP traffic by filtering for "RDP" or "tcp.port==3389". You should see continuous traffic because there's an active RDP session from our host computer to the virtual machine. This non-stop traffic occurs as actions on our physical computer are streamed to the VM. 
 </p>
 <br />
 
-WHEN YOU'RE DONE, CLOSE THE REMOTE DESKTOP CONNECTION AND DON'T FORGET TO DELETE YOUR RESOURCE GROUPS SO YOU WON'T RACK UP A UNNECESSARY BILL BECAUSE YOU LEFT THE RESOURCES RUNNING. 
+ 
 
 
 
